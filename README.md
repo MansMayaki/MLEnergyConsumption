@@ -34,3 +34,11 @@ It includes:
 ├── environment.yml     # (optional) Conda environment
 ├── LICENSE             # License for code and/or data
 └── README.md           # This file
+
+
+
+---
+
+## 📄 Methodology
+```bash
+jhjljkjklk
