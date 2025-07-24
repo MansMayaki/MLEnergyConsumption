@@ -36,9 +36,90 @@ It includes:
 └── README.md           # This file
 
 
+---
+
+## 📦 Installation
+
+### Option 1: Using `pip`
+
+```bash
+git clone https://gitlab.com/yourusername/yourproject.git
+cd yourproject
+pip install -r requirements.txt
+```
+
+### Option 2: Using Conda (Recommended)
+
+```bash
+conda env create -f environment.yml
+conda activate your-env-name
+```
 
 ---
 
-## 📄 Methodology
+## ▶️ How to Run
+
+### 1. Preprocess Data
+
 ```bash
-jhjljkjklk
+python src/preprocess.py
+```
+
+### 2. Train Model
+
+```bash
+python src/train_model.py
+```
+
+### 3. Reproduce Results
+
+All figures and tables can be regenerated using the notebooks in `notebooks/`.
+
+---
+
+## 📊 Datasets
+
+* 📂 `data/raw/`: Original measurements
+* 📂 `data/processed/`: Cleaned datasets for modeling
+
+> ⚠️ Due to size or license restrictions, some datasets may not be included directly. Please follow the instructions in `data/README.md` to download them.
+
+---
+
+## 📈 Results
+
+Key results can be found in the `results/` folder, including:
+
+* Plots and metrics
+* LaTeX-formatted tables for publication
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
+Please cite our work if you use any part of this project.
+
+---
+
+## 📚 Citation
+
+```bibtex
+@article{your2025paper,
+  title={Your Paper Title},
+  author={Author, A. and Researcher, B.},
+  journal={Journal of Awesome ML Research},
+  year={2025}
+}
+```
+
+---
+
+## 🤝 Contributions
+
+Pull requests and issues are welcome. Please feel free to fork and adapt this work for your own research!
+
+```
+
+
+
