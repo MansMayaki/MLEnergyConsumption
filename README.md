@@ -7,6 +7,24 @@ This repository contains the code, data, and analysis accompanying the research 
 > _ECAI 2025_  
 > [DOI or arXiv link]
 
+
+---
+
+## 📚 Table of Contents
+
+- [Overview](#-overview)
+- [Repository Structure](#-repository-structure)
+- [Installation](#-installation)
+  - [Using pip](#option-1-using-pip)
+  - [Using Conda](#option-2-using-conda-recommended)
+- [How to Run](#️-how-to-run)
+- [Datasets](#-datasets)
+- [Results](#-results)
+- [License](#-license)
+- [Citation](#-citation)
+- [Contributions](#-contributions)
+
+---
 ---
 
 ## 📄 Overview
