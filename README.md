@@ -14,10 +14,7 @@ This repository contains the code, data, and analysis accompanying the research 
 
 - [Overview](#-overview)
 - [Repository Structure](#-repository-structure)
-- [Installation](#-installation)
-  - [Using pip](#option-1-using-pip)
-  - [Using Conda](#option-2-using-conda-recommended)
-- [How to Run](#️-how-to-run)
+- [Practical Use Case: Energy-Aware Model Selection](#-practical-use-case-energy-aware-model-selection)
 - [Datasets](#-datasets)
 - [Results](#-results)
 - [License](#-license)
@@ -66,12 +63,81 @@ cd yourproject
 pip install -r requirements.txt
 ```
 
-### Option 2: Using Conda (Recommended)
+## 🔋 Practical Use Case: Energy-Aware Model Selection
 
-```bash
-conda env create -f environment.yml
-conda activate your-env-name
-```
+This section presents a practical use of our energy estimation method to support model selection based on energy efficiency.  
+We compare two Transformer configurations on a GPU (**NVIDIA A100**, max throughput **156 TFLOPs/s**).  
+
+Rather than benchmarking, our method uses architectural parameters to estimate energy consumption.
+
+### Hardware and Input Settings
+All steps are encapsulated in modular functions—define your model configuration and workload parameters (batch size, sequence length, layers, heads, embedding dimensionality $d_{\text{model}}$), and the system automatically computes the estimated energy consumption for one training epoch.
+
+- **Max Throughput:** $v_{\text{max}} = 156 \times 10^{12}$ FLOPs/s  
+- **Batch Size:** 64  
+- **Sequence Length:** 320  
+
+### Model Configurations
+- **Model A:** 6 layers, $d_{\text{model}} = 512$, 8 attention heads  
+- **Model B:** 12 layers, $d_{\text{model}} = 768$, 12 attention heads  
+
+---
+
+### **Step 1 — FLOPs Estimation**
+
+| Operation         | Model A FLOPs          | Model B FLOPs          |
+|-------------------|------------------------|------------------------|
+| QKV Projections   | $6.44 \times 10^{10}$  | $3.43 \times 10^{11}$  |
+| Final Projection  | $4.30 \times 10^{10}$  | $2.29 \times 10^{11}$  |
+| Attention Scores  | $6.74 \times 10^{9}$   | $2.69 \times 10^{10}$  |
+| Attention Output  | $6.74 \times 10^{9}$   | $2.69 \times 10^{10}$  |
+
+---
+
+### **Step 2 — Hardware Efficiency & Duration Estimation**
+
+| Operation         | $\eta_{\text{max}}$ | $k$   | $\alpha$ |
+|-------------------|--------------------|-------|----------|
+| Projections       | 65.79              | 9.25  | 0.81     |
+| Attention Scores  | 55.6               | 8.24  | 0.80     |
+| Attention Output  | 68.22              | 8.49  | 0.794    |
+
+| Operation         | Model | FLOPs (TF) | $\eta_\Theta(c)$ | $t_\Theta(c) (\mu s) $|
+|-------------------|-------|------------|------------------|------------------------|
+| Projections       | A     | 0.1074     | 35.45            | 19.4                   |
+| Attention Scores  | A     | 0.00674    | 5.15             | 0.76                   |
+| Attention Output  | A     | 0.00674    | 6.68             | 0.64                   |
+| Projections       | B     | 0.572      | 57.65            | 63.6                   |
+| Attention Scores  | B     | 0.0269     | 11.98            | 1.23                   |
+| Attention Output  | B     | 0.0269     | 15.37            | 1.12                   |
+
+---
+
+### **Step 3 — Energy Estimation**
+
+Regression model:
+
+$$
+E = 23.8962 + 0.1089 \cdot t_{\text{Proj}} + 0.4743 \cdot t_{\text{Score}} - 0.1029 \cdot t_{\text{Mul}}
+$$
+
+For Model A:
+
+$$
+E_A \approx 23.8962 + 0.1089 \cdot 19.4 + 0.4743 \cdot 0.76 - 0.1029 \cdot 0.64 = \mathbf{26.30\ J}
+$$
+
+For Model B:
+
+$$
+E_B \approx 23.8962 + 0.1089 \cdot 63.6 + 0.4743 \cdot 1.23 - 0.1029 \cdot 1.12 = \mathbf{31.28\ J}
+$$
+
+---
+
+### **Conclusion**
+Under identical conditions, Model B consumes **19% more energy per epoch** than Model A. Over one million epochs, this difference accumulates to **1.3 kWh**, which is significant in battery-powered or high-throughput systems.
+
 
 ---
 
