@@ -1,0 +1,5 @@
+# Core dependencies
+numpy>=1.21.0
+
+# Optional: used only if you later extend to regression fitting/validation
+scikit-learn>=1.0.0
