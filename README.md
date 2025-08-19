@@ -1,7 +1,6 @@
 # Modeling Energy Consumption in Deep Learning Architectures Using Power Laws
 
-This repository contains the code, data, and analysis accompanying the research paper:
-
+This repository contains the official code, data, and analysis release accompanying our ECAI 2025 paper:
 > **Modeling Energy Consumption in Deep Learning Architectures Using Power Laws**  
 > _Mansour MAYAKI_  
 > _ECAI 2025_  
@@ -41,8 +40,11 @@ It includes:
 ```bash
 .
 ├── data/               # Raw and processed data
-├── notebooks/          # Jupyter notebooks with analysis and experiments
-├── src/                # Python scripts for preprocessing, training, etc.
+├── notebooks/: Reproducible Jupyter notebooks used in the paper
+  - UseCase.ipynb: Example application of our method
+  - HEF_modelling.ipynb: Hardware Efficiency Factor modeling
+  - Energy_Modeling.ipynb: Full pipeline for FLOPs, duration, and energy estimation
+├── src/: Clean Python modules for FLOPs calculation, HEF modeling, and energy estimation
 ├── paper/              # LaTeX source files of the paper
 ├── results/            # Output: figures, tables, metrics
 ├── requirements.txt    # Python dependencies
