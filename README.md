@@ -145,19 +145,13 @@ Under identical conditions, Model B consumes **19% more energy per epoch** than 
 
 ## ▶️ How to Run
 
-### 1. Preprocess Data
+### 1. Usage
 
 ```bash
-python src/preprocess.py
+jupyter notebook notebooks/Energy_Modeling.ipynb
 ```
 
-### 2. Train Model
-
-```bash
-python src/train_model.py
-```
-
-### 3. Reproduce Results
+### 2. Reproduce Results
 
 All figures and tables can be regenerated using the notebooks in `notebooks/`.
 
