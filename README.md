@@ -2,7 +2,8 @@
 
 This repository contains the official code, data, and analysis release accompanying our ECAI 2025 paper:
 > **Modeling Energy Consumption in Deep Learning Architectures Using Power Laws**  
-> _Mansour MAYAKI_  
+> _Mansour MAYAKI_  and _Victor Charpenay_
+> 
 > _ECAI 2025_  
 > [DOI or arXiv link]
 
