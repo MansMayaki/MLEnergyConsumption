@@ -57,10 +57,10 @@ It includes:
 
 ## 📦 Installation
 
-### Option 1: Using `pip`
+### Using `pip`
 
 ```bash
-git clone https://gitlab.com/yourusername/yourproject.git
+git clone https://github.com/MansMayaki/MLEnergyConsumption.git
 cd yourproject
 pip install -r requirements.txt
 ```
