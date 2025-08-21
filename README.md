@@ -84,34 +84,20 @@ All steps are encapsulated in modular functions—define your model configuratio
 - **Model B:** 12 layers, $d_{\text{model}} = 768$, 12 attention heads  
 
 ---
+### **Step 1 & 2 — FLOPs, Hardware Efficiency & Duration Estimation**
 
-### **Step 1 — FLOPs Estimation**
+FLOPs (in teraflops), efficiency values ηΘ(c), and operation durations tΘ(c) (in microseconds) for each model and operation.
 
-| Operation         | Model A FLOPs          | Model B FLOPs          |
-|-------------------|------------------------|------------------------|
-| QKV Projections   | $6.44 \times 10^{10}$  | $3.43 \times 10^{11}$  |
-| Final Projection  | $4.30 \times 10^{10}$  | $2.29 \times 10^{11}$  |
-| Attention Scores  | $6.74 \times 10^{9}$   | $2.69 \times 10^{10}$  |
-| Attention Output  | $6.74 \times 10^{9}$   | $2.69 \times 10^{10}$  |
-
----
-
-### **Step 2 — Hardware Efficiency & Duration Estimation**
-
-| Operation         | $\eta_{\text{max}}$ | $k$   | $\alpha$ |
-|-------------------|--------------------|-------|----------|
-| Projections       | 65.79              | 9.25  | 0.81     |
-| Attention Scores  | 55.6               | 8.24  | 0.80     |
-| Attention Output  | 68.22              | 8.49  | 0.794    |
-
-| Operation         | Model | FLOPs (TF) | $\eta_\Theta(c)$ | $t_\Theta(c) (\mu s) $|
-|-------------------|-------|------------|------------------|------------------------|
-| Projections       | A     | 0.1074     | 35.45            | 19.4                   |
-| Attention Scores  | A     | 0.00674    | 5.15             | 0.76                   |
-| Attention Output  | A     | 0.00674    | 6.68             | 0.64                   |
-| Projections       | B     | 0.572      | 57.65            | 63.6                   |
-| Attention Scores  | B     | 0.0269     | 11.98            | 1.23                   |
-| Attention Output  | B     | 0.0269     | 15.37            | 1.12                   |
+| Operation           | Model | FLOPs (TF) | ηΘ(c) | tΘ(c) (µs) |
+|---------------------|-------|------------|-------|------------|
+| QKV Projections     | A     | 0.0322     | 35.31 | 35.08      |
+| Attention Scores    | A     | 0.00674    | 7.75  | 33.28      |
+| Attention Output    | A     | 0.00674    | 9.76  | 26.43      |
+| Final Projection    | A     | 0.01074    | 12.19 | 33.87      |
+| QKV Projections     | B     | 0.0724     | 51.19 | 108.90     |
+| Attention Scores    | B     | 0.0100     | 10.43 | 74.21      |
+| Attention Output    | B     | 0.0100     | 13.11 | 59.05      |
+| Final Projection    | B     | 0.0240     | 21.04 | 88.31      |
 
 ---
 
@@ -126,19 +112,20 @@ $$
 For Model A:
 
 $$
-E_A \approx 23.8962 + 0.1089 \cdot 19.4 + 0.4743 \cdot 0.76 - 0.1029 \cdot 0.64 = \mathbf{26.30\ J}
+E_A \approx  3.6318 - 0.1377 \cdot 35.08 + 0.5637 \cdot 33.28 + 0.3041 \cdot 33.87 + 0.3041 \cdot 26.43  = \mathbf{36\ J}
 $$
 
 For Model B:
 
 $$
-E_B \approx 23.8962 + 0.1089 \cdot 63.6 + 0.4743 \cdot 1.23 - 0.1029 \cdot 1.12 = \mathbf{31.28\ J}
+E_B \approx  3.6318 - 0.1377 \cdot 108.9 + 0.5637 \cdot 74.21 + 0.3041 \cdot 59.05 + 0.3041 \cdot 88.31 = \mathbf{ 79 \ J}
 $$
 
 ---
 
 ### **Conclusion**
-Under identical conditions, Model B consumes **19% more energy per epoch** than Model A. Over one million epochs, this difference accumulates to **1.3 kWh**, which is significant in battery-powered or high-throughput systems.
+Despite being evaluated under identical input conditions, Model B is estimated to consume more than **twice energy per epoch** than Model A. While a single-epoch difference of roughly 42 joules may seem modest, the effect becomes pronounced at scale: over one million training epochs, this difference would accumulate to more than **11 kWh**. Such a gap is non-negligible in battery-powered, embedded, or high-throughput environments, where energy efficiency directly constrains deployment feasibility. 
+The higher cost of Model B is largely attributable to its **increased dimensionality and number of layers**, which disproportionately amplify the computational burden of projection and score computations relative to Model A. Beyond highlighting the energy trade-offs between model sizes, this example illustrates how our method enables **early-stage architectural comparisons** and **energy-aware design choices** without requiring execution on actual hardware. 
 
 
 ---
