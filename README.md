@@ -177,7 +177,9 @@ If you use this dataset or code in your research, please cite our work:
 
 @misc{mayaki2025mlenergyconsumption,
   author       = {MAYAKI, Mansour and Charpenay, Victor},
-  title        = {MansMayaki/MLEnergyConsumption: MLEnergyConsumption (v1.0.0)},
+  title        = {Dataset, Code and Online Appendix for: Modeling Energy Consumption
+                   in Deep Learning Architectures Using Power Laws
+                   (ECAI 2025) (v1.0.0)},
   year         = {2025},
   publisher    = {Zenodo},
   booktitle    = {European Conference on Artificial Intelligence (ECAI-2025)},
@@ -185,6 +187,7 @@ If you use this dataset or code in your research, please cite our work:
   doi          = {10.5281/zenodo.16920232},
   url          = {https://doi.org/10.5281/zenodo.16920232}
 }
+
 
 ```
 
