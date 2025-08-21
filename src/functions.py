@@ -50,8 +50,6 @@ def exclude_outliers_by_trend(df, group_col, value_col,sort_by='FLOPs', window_s
 
 # Example custom function to model exponential decay with saturation
 
-def general_exponential(x, a, b, c):
-    return a * (1 - np.exp(-b * x)) + c  
 
 
 def exponential_decay(x, L, k,d):
@@ -65,7 +63,7 @@ def plot_exponential_decay_fit(data, x_col, y_col, **kwargs):
     # Extract x and y from the dataframe subset
     x = data[x_col].values
     y = data[y_col].values
-    initial_guess = [max(y), 0.01,min(y)]
+    initial_guess = [60, 1,5]
     # Fit the custom exponential function to this subset
     popt, _ = curve_fit(exponential_decay, x, y, p0=initial_guess, maxfev=100000)
     L, k,d=popt[0],popt[1],popt[2]    
