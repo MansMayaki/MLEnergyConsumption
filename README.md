@@ -49,7 +49,6 @@ It includes:
 ├── paper/              # LaTeX source files of the paper
 ├── results/            # Output: figures, tables, metrics
 ├── requirements.txt    # Python dependencies
-├── environment.yml     # (optional) Conda environment
 ├── LICENSE             # License for code and/or data
 └── README.md           # This file
 
