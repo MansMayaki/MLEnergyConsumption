@@ -172,15 +172,22 @@ Please cite our work if you use any part of this project.
 ## 📚 Citation
 
 ```bibtex
-@article{your2025paper,
-  title={Your Paper Title},
-  author={Author, A. and Researcher, B.},
-  journal={Journal of Awesome ML Research},
-  year={2025}
+### BibTeX
+If you use this dataset or code in your research, please cite our work:
+
+@misc{mayaki2025mlenergyconsumption,
+  author       = {Mayaki, M. and Charpenay, V.},
+  title        = {MansMayaki/MLEnergyConsumption: MLEnergyConsumption (v1.0.0)},
+  year         = {2025},
+  publisher    = {Zenodo},
+  booktitle    = {European Conference on Artificial Intelligence (ECAI-2025)},
+  address      = {Bologna},
+  doi          = {10.5281/zenodo.16920232},
+  url          = {https://doi.org/10.5281/zenodo.16920232}
 }
+
 ```
 
----
 
 ## 🤝 Contributions
 
