@@ -176,7 +176,7 @@ Please cite our work if you use any part of this project.
 If you use this dataset or code in your research, please cite our work:
 
 @misc{mayaki2025mlenergyconsumption,
-  author       = {Mayaki, M. and Charpenay, V.},
+  author       = {MAYAKI, Mansour and Charpenay, Victor},
   title        = {MansMayaki/MLEnergyConsumption: MLEnergyConsumption (v1.0.0)},
   year         = {2025},
   publisher    = {Zenodo},
