@@ -106,7 +106,7 @@ FLOPs (in teraflops), efficiency values ηΘ(c), and operation durations tΘ(c) 
 Regression model:
 
 $$
-E = 23.8962 + 0.1089 \cdot t_{\text{Proj}} + 0.4743 \cdot t_{\text{Score}} - 0.1029 \cdot t_{\text{Mul}}
+E \approx 3.6318 - 0.1377 \cdot t_{\text{qkvProj}} + 0.5637 \cdot t_{\text{Score}} + 0.3041 \cdot t_{\text{FinalProj}} + 0.3041 \cdot t_{\text{AttnOut}}
 $$
 
 For Model A:
